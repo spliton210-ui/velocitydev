@@ -260,10 +260,27 @@
             margin-bottom: 10px;
         }
 
+        .service-duration {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
         .service-description {
             color: var(--gray);
             margin-bottom: 25px;
             line-height: 1.8;
+        }
+
+        .pricing-note {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background: var(--light-gray);
+            border-radius: 8px;
+            color: var(--gray);
+            font-size: 0.95rem;
         }
 
         .service-features {
@@ -672,44 +689,53 @@
             
             <div class="services-grid">
                 <div class="service-card">
-                    <h3 class="service-title">Discovery Package</h3>
-                    <div class="service-price">$500-750</div>
-                    <p class="service-description">Perfect for validating your idea before committing to full development.</p>
+                    <h3 class="service-title">Feasibility Call</h3>
+                    <div class="service-price">Free</div>
+                    <div class="service-duration">30 min assessment</div>
+                    <p class="service-description">Get honest technical feedback on your software idea with no obligation.</p>
                     <ul class="service-features">
-                        <li>2-hour requirements workshop</li>
-                        <li>Technical feasibility analysis</li>
-                        <li>System architecture outline</li>
-                        <li>Detailed timeline estimate</li>
-                        <li>Cost breakdown</li>
+                        <li>Initial concept review</li>
+                        <li>Technical viability assessment</li>
+                        <li>High-level approach discussion</li>
+                        <li>Honest go/no-go recommendation</li>
                     </ul>
                 </div>
 
                 <div class="service-card">
-                    <h3 class="service-title">MVP Sprint</h3>
-                    <div class="service-price">$5K-8K</div>
-                    <p class="service-description">Launch fast with core features that validate your concept in the market.</p>
+                    <h3 class="service-title">Discovery Session</h3>
+                    <div class="service-price">
+                        <span class="price-zar" style="display: none;">R2 500</span>
+                        <span class="price-usd">$250</span>
+                    </div>
+                    <div class="service-duration">2-hour deep dive</div>
+                    <p class="service-description">Validate your concept and define a clear path forward.</p>
                     <ul class="service-features">
-                        <li>4-6 week development timeline</li>
-                        <li>Core features implementation</li>
-                        <li>Production deployment</li>
-                        <li>2 weeks of bug fixes</li>
-                        <li>Basic documentation</li>
+                        <li>Architecture & system design document</li>
+                        <li>Technical feasibility review</li>
+                        <li>Timeline & cost estimate</li>
+                        <li>Development roadmap</li>
                     </ul>
                 </div>
 
                 <div class="service-card">
                     <h3 class="service-title">Full Build</h3>
-                    <div class="service-price">$12K-20K</div>
-                    <p class="service-description">Complete system with all features, integrations, and enterprise-grade reliability.</p>
+                    <div class="service-price">
+                        <span class="price-zar" style="display: none;">From R15 000</span>
+                        <span class="price-usd">From $3 000</span>
+                    </div>
+                    <div class="service-duration">Complete end-to-end development</div>
+                    <p class="service-description">Your complete system — designed, built, deployed, and documented.</p>
                     <ul class="service-features">
-                        <li>8-12 week development timeline</li>
-                        <li>Complete feature set</li>
-                        <li>Third-party API integrations</li>
-                        <li>Testing & optimization</li>
-                        <li>1 month post-launch support</li>
+                        <li>Production-ready deployment</li>
+                        <li>Complete feature set and integrations</li>
                         <li>Comprehensive documentation</li>
+                        <li>Post-launch support</li>
                     </ul>
                 </div>
+            </div>
+
+            <div class="pricing-note">
+                💰 Prices shown in your local currency — international clients billed in USD.
             </div>
         </div>
     </section>
@@ -792,11 +818,9 @@
                 <a href="mailto:hello@velocitydev.ai" class="btn-secondary">Email Me Directly</a>
             </div>
             
-            <div style="margin-top: 60px; padding-top: 50px; border-top: 1px solid rgba(255,255,255,0.2);">
-                <p style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.9;">💡 <strong>Pre-seed Startup Founder?</strong></p>
-                <p style="opacity: 0.8; margin-bottom: 20px;">Can't afford traditional development? I also do equity partnerships with select startups.</p>
-                <a href="https://ventures.velocitydev.ai" style="color: var(--secondary); text-decoration: none; font-weight: 600; font-size: 1.05rem;">Learn about VelocityDev Ventures →</a>
-            </div>
+            <p style="margin-top: 30px; opacity: 0.8; font-size: 1rem;">
+                💡 <strong>Pre-seed startup?</strong> Equity partnerships available for qualified startups. <a href="https://ventures.velocitydev.ai" style="color: #fbbf24; text-decoration: underline;">Learn more →</a>
+            </p>
             
             <p style="margin-top: 40px; opacity: 0.8; font-size: 0.95rem;">
                 Based in Cape Town, South Africa • Working with clients globally
@@ -817,5 +841,32 @@
             </div>
         </div>
     </footer>
+
+    <!-- Geo-detection for pricing -->
+    <script>
+        // Detect user location and show appropriate currency
+        async function detectLocation() {
+            try {
+                const response = await fetch('https://ipapi.co/json/');
+                const data = await response.json();
+                
+                // Show ZAR pricing for South African visitors
+                if (data.country_code === 'ZA') {
+                    document.querySelectorAll('.price-zar').forEach(el => {
+                        el.style.display = 'inline';
+                    });
+                    document.querySelectorAll('.price-usd').forEach(el => {
+                        el.style.display = 'none';
+                    });
+                }
+            } catch (error) {
+                // Default to USD if geo-detection fails
+                console.log('Using default USD pricing');
+            }
+        }
+        
+        // Run on page load
+        detectLocation();
+    </script>
 </body>
 </html>
