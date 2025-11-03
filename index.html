@@ -342,32 +342,53 @@
             line-height: 1.8;
         }
 
+        /* Two Column Layout for Experience + Process */
+        .two-column-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 80px;
+        }
+
+        .column-section {
+            padding: 0;
+        }
+
+        .column-section .section-title {
+            font-size: 2rem;
+        }
+
+        .column-section .section-subtitle {
+            font-size: 1rem;
+        }
+
         /* Process */
         .process-steps {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-top: 50px;
-            max-width: 1000px;
-            margin-left: auto;
-            margin-right: auto;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-top: 40px;
         }
 
         .process-step {
-            text-align: center;
+            text-align: left;
             position: relative;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
         }
 
         .step-number {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             background: var(--primary);
             color: var(--white);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
+            flex-shrink: 0;
             font-weight: 700;
             margin: 0 auto 20px;
         }
@@ -503,6 +524,11 @@
                 grid-template-columns: 1fr;
             }
 
+            .two-column-wrapper {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
             .cta-buttons {
                 flex-direction: column;
                 align-items: stretch;
@@ -539,43 +565,92 @@
         </div>
     </div>
 
+    <!-- Experience & Process Section -->
+    <section>
+        <div class="container">
+            <div class="two-column-wrapper">
+                <!-- Why Experience Matters -->
+                <div class="column-section">
+                    <h2 class="section-title">Why Experience Matters</h2>
+                    <p class="section-subtitle">Enterprise-level expertise</p>
+                    
+                    <div style="margin-top: 30px;">
+                        <div style="display: grid; grid-template-columns: 1fr; gap: 20px;">
+                            <div style="background: var(--light-gray); padding: 20px; border-radius: 8px;">
+                                <div style="font-size: 2.5rem; font-weight: 700; color: var(--primary); margin-bottom: 5px;">25+</div>
+                                <div style="font-size: 1rem; font-weight: 600; margin-bottom: 3px;">Years</div>
+                                <div style="color: var(--gray); font-size: 0.95rem;">Technology Leadership</div>
+                            </div>
+                            <div style="background: var(--light-gray); padding: 20px; border-radius: 8px;">
+                                <div style="font-size: 2.5rem; font-weight: 700; color: var(--primary); margin-bottom: 5px;">12</div>
+                                <div style="font-size: 1rem; font-weight: 600; margin-bottom: 3px;">Years</div>
+                                <div style="color: var(--gray); font-size: 0.95rem;">CTO of Tech Company</div>
+                            </div>
+                            <div style="background: var(--light-gray); padding: 20px; border-radius: 8px;">
+                                <div style="font-size: 2.5rem; font-weight: 700; color: var(--primary); margin-bottom: 5px;">Global</div>
+                                <div style="font-size: 1rem; font-weight: 600; margin-bottom: 3px;">Scale</div>
+                                <div style="color: var(--gray); font-size: 0.95rem;">Infrastructure Director</div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 30px;">
+                            <p style="font-size: 1rem; color: var(--dark); line-height: 1.7; margin-bottom: 15px;">
+                                Most developers can write code. Few understand what makes systems reliable at enterprise scale.
+                            </p>
+                            <p style="font-size: 0.95rem; color: var(--gray); line-height: 1.7;">
+                                AI accelerates my development speed. My 25 years of experience ensures what we build 
+                                actually works when it matters—at scale, under pressure, in the real world.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- How It Works -->
+                <div class="column-section">
+                    <h2 class="section-title">How It Works</h2>
+                    <p class="section-subtitle">From idea to production</p>
+                    
+                    <div class="process-steps">
+                        <div class="process-step">
+                            <div class="step-number">1</div>
+                            <div>
+                                <h3 class="step-title">Feasibility Call</h3>
+                                <p class="step-description">Free 30-minute assessment to review your concept and provide honest technical feedback.</p>
+                            </div>
+                        </div>
+
+                        <div class="process-step">
+                            <div class="step-number">2</div>
+                            <div>
+                                <h3 class="step-title">Discovery Session</h3>
+                                <p class="step-description">2-hour deep dive to create architecture docs, feasibility review, and detailed roadmap with timeline and costs.</p>
+                            </div>
+                        </div>
+
+                        <div class="process-step">
+                            <div class="step-number">3</div>
+                            <div>
+                                <h3 class="step-title">Build & Deploy</h3>
+                                <p class="step-description">Rapid AI-accelerated development with weekly updates. Production-ready code from day one.</p>
+                            </div>
+                        </div>
+
+                        <div class="process-step">
+                            <div class="step-number">4</div>
+                            <div>
+                                <h3 class="step-title">Launch & Support</h3>
+                                <p class="step-description">Full deployment with documentation, training, and post-launch support to ensure success.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Case Study -->
     <section class="case-study">
         <div class="container">
-            <h2 class="section-title">Why Experience Matters</h2>
-            <p class="section-subtitle">Enterprise-grade development requires enterprise-level expertise</p>
-            
-            <div class="case-study-card" style="margin-bottom: 60px;">
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; text-align: center;">
-                    <div>
-                        <div style="font-size: 3rem; font-weight: 700; color: var(--primary); margin-bottom: 10px;">25+</div>
-                        <div style="font-size: 1.2rem; font-weight: 600; margin-bottom: 5px;">Years</div>
-                        <div style="color: var(--gray);">Technology Leadership</div>
-                    </div>
-                    <div>
-                        <div style="font-size: 3rem; font-weight: 700; color: var(--primary); margin-bottom: 10px;">12</div>
-                        <div style="font-size: 1.2rem; font-weight: 600; margin-bottom: 5px;">Years</div>
-                        <div style="color: var(--gray);">CTO of Tech Company</div>
-                    </div>
-                    <div>
-                        <div style="font-size: 3rem; font-weight: 700; color: var(--primary); margin-bottom: 10px;">Global</div>
-                        <div style="font-size: 1.2rem; font-weight: 600; margin-bottom: 5px;">Scale</div>
-                        <div style="color: var(--gray);">Infrastructure Director</div>
-                    </div>
-                </div>
-                
-                <div style="margin-top: 40px; padding-top: 40px; border-top: 2px solid var(--light-gray);">
-                    <p style="font-size: 1.15rem; color: var(--dark); line-height: 1.8; margin-bottom: 20px;">
-                        Most developers can write code. Few understand what makes systems reliable at enterprise scale. 
-                        As a former CTO and Infrastructure Director, I bring the architectural thinking and production 
-                        experience that separates working demos from production-ready systems.
-                    </p>
-                    <p style="font-size: 1.05rem; color: var(--gray); line-height: 1.8;">
-                        AI accelerates my development speed. My 25 years of experience ensures what we build 
-                        actually works when it matters—at scale, under pressure, in the real world.
-                    </p>
-                </div>
-            </div>
 
             <h2 class="section-title" style="margin-top: 40px;">Proof: WiggleRewards</h2>
             <p class="section-subtitle">A complete enterprise loyalty platform built in just 5 weeks</p>
@@ -766,40 +841,6 @@
                     <p class="client-description">
                         Your current software is outdated, expensive to maintain, and holding you back. You need a modern replacement without disrupting your business operations.
                     </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Process -->
-    <section>
-        <div class="container">
-            <h2 class="section-title">How It Works</h2>
-            <p class="section-subtitle">Simple, transparent process from idea to production</p>
-            
-            <div class="process-steps">
-                <div class="process-step">
-                    <div class="step-number">1</div>
-                    <h3 class="step-title">Discovery Call</h3>
-                    <p class="step-description">Free 30-minute consultation to understand your needs and assess technical feasibility</p>
-                </div>
-
-                <div class="process-step">
-                    <div class="step-number">2</div>
-                    <h3 class="step-title">Requirements</h3>
-                    <p class="step-description">Detailed workshop to map features, integrations, and priorities. Fixed timeline and cost.</p>
-                </div>
-
-                <div class="process-step">
-                    <div class="step-number">3</div>
-                    <h3 class="step-title">Build & Test</h3>
-                    <p class="step-description">Rapid development with weekly check-ins. You see progress in real-time.</p>
-                </div>
-
-                <div class="process-step">
-                    <div class="step-number">4</div>
-                    <h3 class="step-title">Launch</h3>
-                    <p class="step-description">Production deployment with documentation, training, and post-launch support included.</p>
                 </div>
             </div>
         </div>
