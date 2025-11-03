@@ -1,8 +1,5 @@
 name = "velocitydev"
 compatibility_date = "2025-11-03"
 
-# Static site configuration
-# Deploys all files from the root directory as static assets
-[assets]
-directory = "./"
-binding = "ASSETS"
+# Cloudflare Pages configuration for static site deployment
+pages_build_output_dir = "."
