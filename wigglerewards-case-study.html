@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WiggleRewards Case Study | VelocityDev.ai</title>
+    <meta name="description" content="Complete case study: How we built an enterprise loyalty platform with WiFi integration, AI support, and multi-tenant architecture in just 5 weeks.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #0ea5e9;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --light-gray: #f1f5f9;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+        }
+
+        /* Header */
+        .header {
+            background: var(--dark);
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--white);
+        }
+
+        .logo-link img {
+            height: 40px;
+            width: auto;
+        }
+
+        .back-link {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: var(--white);
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            margin-bottom: 30px;
+        }
+
+        .timeline-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 20px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+            font-weight: 700;
+        }
+
+        .section-description {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 50px;
+            line-height: 1.8;
+        }
+
+        /* Overview */
+        .overview {
+            background: var(--white);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .stat-card {
+            background: var(--light-gray);
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--gray);
+        }
+
+        /* Screenshots Section */
+        .screenshots {
+            background: var(--light-gray);
+        }
+
+        .screenshot-grid {
+            display: grid;
+            gap: 50px;
+        }
+
+        .screenshot-item {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .screenshot-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .screenshot-caption {
+            padding: 25px;
+        }
+
+        .screenshot-caption h3 {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .screenshot-caption p {
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        /* Features */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .feature-card ul {
+            list-style: none;
+        }
+
+        .feature-card li {
+            padding: 8px 0;
+            color: var(--gray);
+        }
+
+        .feature-card li::before {
+            content: "✓ ";
+            color: var(--secondary);
+            font-weight: 700;
+            margin-right: 8px;
+        }
+
+        /* Tech Stack */
+        .tech-stack {
+            background: var(--dark);
+            color: var(--white);
+        }
+
+        .tech-stack .section-title {
+            color: var(--white);
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .tech-category {
+            background: rgba(255,255,255,0.05);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .tech-category h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+
+        .tech-category ul {
+            list-style: none;
+        }
+
+        .tech-category li {
+            padding: 8px 0;
+            opacity: 0.9;
+        }
+
+        /* CTA */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .cta-section .section-title {
+            color: var(--white);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .btn-primary {
+            background: var(--white);
+            color: var(--primary);
+            padding: 16px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            padding: 16px 40px;
+            border: 2px solid var(--white);
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: background 0.3s;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: var(--white);
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        footer a {
+            color: var(--secondary);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="/" class="logo-link">
+                <img src="logo-small.png" alt="VelocityDev.ai">
+            </a>
+            <a href="/" class="back-link">
+                ← Back to Main Site
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>WiggleRewards Case Study</h1>
+            <p class="hero-subtitle">
+                Enterprise Customer Loyalty Platform with WiFi Integration, AI Support, and Multi-Tenant Architecture—Scalable to Millions of Users
+            </p>
+            <div class="timeline-badge">Built in 5 Weeks | Production-Ready | Enterprise-Grade</div>
+        </div>
+    </section>
+
+    <!-- Overview -->
+    <section class="overview">
+        <div class="container">
+            <h2 class="section-title">Project Overview</h2>
+            <p class="section-description">
+                WiggleRewards is a comprehensive, fully GDPR-compliant customer engagement platform that transforms 
+                existing WiFi infrastructure into a powerful loyalty engine. Built on a scalable AWS Lightsail 
+                architecture with multi-tenant design and enhanced by AI-powered support, the system automatically 
+                rewards customers for WiFi usage, survey participation, and social media engagement. The platform is 
+                designed to handle 200,000 to 2,000,000+ concurrent users across multiple tenants while maintaining 
+                predictable costs and enterprise-grade reliability.
+            </p>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">5</span>
+                    <span class="stat-label">Weeks to Production</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">4,646</span>
+                    <span class="stat-label">Total Users</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">336K+</span>
+                    <span class="stat-label">Points Distributed</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">16+</span>
+                    <span class="stat-label">Earning Methods</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshots -->
+    <section class="screenshots">
+        <div class="container">
+            <h2 class="section-title">System In Action</h2>
+            <p class="section-description">
+                Real screenshots from the production WiggleRewards system showing the admin dashboard, 
+                AI assistant, and customer engagement features.
+            </p>
+
+            <div class="screenshot-grid">
+                <div class="screenshot-item">
+                    <img src="screenshot-dashboard.png" alt="WiggleRewards Admin Dashboard">
+                    <div class="screenshot-caption">
+                        <h3>Admin Dashboard Overview</h3>
+                        <p>
+                            Real-time visibility into customer engagement and system activity. Track member tiers, 
+                            redemption patterns, and business performance at a glance—giving you the data you need 
+                            to make informed decisions about rewards strategy and customer retention.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="screenshot-item">
+                    <img src="screenshot-analytics-ai.png" alt="Analytics Dashboard with AI Assistant">
+                    <div class="screenshot-caption">
+                        <h3>Analytics with AI Support</h3>
+                        <p>
+                            Real-time feedback on ROI, customer engagement, and venue performance. Track demographics, 
+                            earning method effectiveness, and tier progression to understand what drives customer behavior. 
+                            The integrated AI assistant helps you interpret data and optimize your rewards strategy on the fly.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="screenshot-item">
+                    <img src="screenshot-earn-methods.png" alt="Comprehensive Earn Points Management">
+                    <div class="screenshot-caption">
+                        <h3>Flexible Earning Configuration</h3>
+                        <p>
+                            Complete control over how customers earn rewards. Enable or disable earning methods based 
+                            on your business goals, seasonal promotions, or venue-specific strategies. No developer 
+                            required—adjust point values and rules through the admin interface in seconds.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="screenshot-item">
+                    <img src="screenshot-portal-layout.png" alt="Portal Layout Management Interface">
+                    <div class="screenshot-caption">
+                        <h3>Custom Portal Design Interface</h3>
+                        <p>
+                            Each tenant has the flexibility to design their own user web portal interface using a unique 
+                            drag-and-drop system. Create branded customer experiences without writing code—rearrange 
+                            earning methods, feature specific promotions, and tailor the portal layout to match each 
+                            business's unique strategy and visual identity.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture & Scalability -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Enterprise-Grade Architecture</h2>
+            <p class="section-description">
+                Built on AWS Lightsail with a scalable, high-availability architecture designed to handle 
+                200,000 to 2,000,000+ concurrent users across multiple tenants—all while maintaining 
+                predictable costs and operational simplicity.
+            </p>
+
+            <div style="background: var(--light-gray); padding: 40px; border-radius: 12px; margin-top: 50px;">
+                <h3 style="font-size: 1.8rem; margin-bottom: 20px; color: var(--dark);">Scalability Economics</h3>
+                <div class="stats-grid" style="margin-bottom: 0;">
+                    <div class="stat-card" style="background: var(--white);">
+                        <span class="stat-number">500K</span>
+                        <span class="stat-label">Base User Capacity</span>
+                        <p style="margin-top: 10px; font-size: 0.9rem; color: var(--primary);">$1.14 per 1,000 users/month</p>
+                    </div>
+                    <div class="stat-card" style="background: var(--white);">
+                        <span class="stat-number">1M+</span>
+                        <span class="stat-label">With Vertical Scaling</span>
+                        <p style="margin-top: 10px; font-size: 0.9rem; color: var(--primary);">$0.89 per 1,000 users/month</p>
+                    </div>
+                    <div class="stat-card" style="background: var(--white);">
+                        <span class="stat-number">2M+</span>
+                        <span class="stat-label">Maximum Capacity</span>
+                        <p style="margin-top: 10px; font-size: 0.9rem; color: var(--primary);">$0.77 per 1,000 users/month</p>
+                    </div>
+                    <div class="stat-card" style="background: var(--white);">
+                        <span class="stat-number">79%</span>
+                        <span class="stat-label">Cost Savings vs EC2</span>
+                        <p style="margin-top: 10px; font-size: 0.9rem; color: var(--primary);">Predictable monthly pricing</p>
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 30px; color: var(--gray); line-height: 1.8;">
+                    The architecture uses 14 dedicated Lightsail instances with clear separation of concerns. 
+                    Each layer can scale independently, and the system includes automated monitoring, 
+                    failover capabilities, and disaster recovery procedures. Cost per user decreases as the 
+                    system scales, making it economically efficient for both startups and enterprise deployments.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features -->
+    <section style="background: var(--light-gray);">
+        <div class="container">
+            <h2 class="section-title">Key Features Implemented</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Multi-Tenant Architecture</h3>
+                    <ul>
+                        <li>Complete database-level separation</li>
+                        <li>Secure cookie-based authentication</li>
+                        <li>Zero data leakage between tenants</li>
+                        <li>Scales to 200,000-2,000,000+ users</li>
+                        <li>Handles hundreds of businesses simultaneously</li>
+                        <li>White-label customization per tenant</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h3>WiFi Integration</h3>
+                    <ul>
+                        <li>Automatic MAC address recognition</li>
+                        <li>Seamless portal access (zero login friction)</li>
+                        <li>Dwell time bonus calculations</li>
+                        <li>Multi-venue support</li>
+                        <li>Background processing daemon</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h3>GDPR Compliance</h3>
+                    <ul>
+                        <li>Universal unsubscribe system</li>
+                        <li>Channel-specific opt-outs</li>
+                        <li>SMS STOP/START automation</li>
+                        <li>Consent tracking</li>
+                        <li>Privacy-friendly authentication</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h3>AI-Powered Support</h3>
+                    <ul>
+                        <li>Claude 3.5 Sonnet integration</li>
+                        <li>Context-aware assistance</li>
+                        <li>Persistent conversations</li>
+                        <li>Automatic ticket escalation</li>
+                        <li>Fabrication prevention</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h3>Dual QR System</h3>
+                    <ul>
+                        <li>Promotional QR codes (unlimited scans)</li>
+                        <li>Redemption QR codes (single-use)</li>
+                        <li>Instant generation on redemption</li>
+                        <li>Secure verification URLs</li>
+                        <li>No POS integration required</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h3>Communication System</h3>
+                    <ul>
+                        <li>Email (Postfix integration)</li>
+                        <li>SMS (Clickatell & Twilio)</li>
+                        <li>WhatsApp Business API ready</li>
+                        <li>WYSIWYG message editor</li>
+                        <li>Automated campaign triggers</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h3>Survey System</h3>
+                    <ul>
+                        <li>15+ question types</li>
+                        <li>Conditional logic</li>
+                        <li>Real-time analytics</li>
+                        <li>CSV data export</li>
+                        <li>Customer feedback insights</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h3>Business Intelligence</h3>
+                    <ul>
+                        <li>Date-range filtered analytics</li>
+                        <li>Tier distribution tracking</li>
+                        <li>Venue performance metrics</li>
+                        <li>Earning method analysis</li>
+                        <li>Trend visualization</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section class="tech-stack">
+        <div class="container">
+            <h2 class="section-title">Technology Stack</h2>
+
+            <div class="tech-grid">
+                <div class="tech-category">
+                    <h3>Backend</h3>
+                    <ul>
+                        <li>PHP 8.3.6</li>
+                        <li>Python FastAPI</li>
+                        <li>MySQL 8.0+</li>
+                        <li>JWT Authentication</li>
+                        <li>RESTful APIs</li>
+                    </ul>
+                </div>
+
+                <div class="tech-category">
+                    <h3>Frontend</h3>
+                    <ul>
+                        <li>Responsive CSS Grid/Flexbox</li>
+                        <li>Database-driven UI</li>
+                        <li>Real-time updates</li>
+                        <li>WYSIWYG editors</li>
+                        <li>Progressive enhancement</li>
+                    </ul>
+                </div>
+
+                <div class="tech-category">
+                    <h3>Integrations</h3>
+                    <ul>
+                        <li>Claude 3.5 Sonnet API</li>
+                        <li>WiFi Controller APIs</li>
+                        <li>Clickatell SMS</li>
+                        <li>Twilio SMS</li>
+                        <li>WhatsApp Business API</li>
+                    </ul>
+                </div>
+
+                <div class="tech-category">
+                    <h3>Infrastructure</h3>
+                    <ul>
+                        <li>AWS Lightsail (14 dedicated instances)</li>
+                        <li>HAProxy load balancing with failover</li>
+                        <li>Master-replica MySQL cluster</li>
+                        <li>Redis message queue & caching</li>
+                        <li>Zabbix enterprise monitoring</li>
+                        <li>Automated backups & disaster recovery</li>
+                        <li>Horizontal & vertical scaling</li>
+                        <li>99.9%+ uptime architecture</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="section-title">Want Results Like This?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px; opacity: 0.95;">
+                WiggleRewards was built in 5 weeks using AI-accelerated development. 
+                Your project could be next.
+            </p>
+            <p style="font-size: 1.1rem; margin-bottom: 40px; opacity: 0.9;">
+                Whether you need an MVP, a custom business application, or want to modernize a legacy system—
+                we can deliver enterprise-grade results in weeks, not months.
+            </p>
+            <div class="cta-buttons">
+                <a href="/" class="btn-primary">Explore Our Services</a>
+                <a href="mailto:hello@velocitydev.ai" class="btn-secondary">Get Your Free Consultation</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p><strong>VelocityDev.ai</strong> | AI-Accelerated Software Development</p>
+        <p style="margin-top: 10px;"><a href="/">Main Site</a> | <a href="https://ventures.velocitydev.ai">Startup Partnerships</a></p>
+        <p style="margin-top: 10px; opacity: 0.7;">© 2024 VelocityDev.ai. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VelocityDev Ventures | Equity Partnerships for Startups</title>
+    <meta name="description" content="Your technical co-founder alternative. CTO-level expertise + rapid development for reduced cash + equity. Building with select startups.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #7c3aed;
+            --primary-dark: #5b21b6;
+            --secondary: #ec4899;
+            --accent: #f59e0b;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --light-gray: #f1f5f9;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            padding: 100px 20px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="60" height="60" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: 60px 60px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--white);
+            color: var(--primary);
+            padding: 18px 45px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.15rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+
+        .secondary-cta {
+            display: inline-block;
+            margin-left: 15px;
+            color: var(--white);
+            text-decoration: none;
+            padding: 18px 35px;
+            border: 2px solid var(--white);
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .secondary-cta:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 20px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 60px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Problem Section */
+        .problem {
+            background: var(--light-gray);
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .problem-card {
+            background: var(--white);
+            padding: 35px;
+            border-radius: 12px;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .problem-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .problem-card p {
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        /* Solution Section */
+        .solution-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 35px;
+            margin-top: 50px;
+        }
+
+        .feature {
+            text-align: center;
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+        }
+
+        .feature h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .feature p {
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        /* Partnership Packages */
+        .packages {
+            background: var(--light-gray);
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+            margin-top: 50px;
+        }
+
+        .package-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 45px 35px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-top: 4px solid var(--primary);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .package-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        }
+
+        .package-card.featured {
+            border-top-color: var(--secondary);
+            position: relative;
+        }
+
+        .package-card.featured::before {
+            content: "MOST POPULAR";
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: var(--secondary);
+            color: var(--white);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .package-title {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .package-pricing {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 2px solid var(--light-gray);
+        }
+
+        .package-pricing .cash {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: block;
+        }
+
+        .package-pricing .equity {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--secondary);
+            display: block;
+            margin-top: 5px;
+        }
+
+        .package-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .package-features li {
+            padding: 12px 0;
+            color: var(--dark);
+            display: flex;
+            align-items: start;
+        }
+
+        .package-features li::before {
+            content: "✓";
+            color: var(--secondary);
+            font-weight: 700;
+            margin-right: 12px;
+            font-size: 1.2rem;
+        }
+
+        /* Criteria Section */
+        .criteria {
+            background: var(--dark);
+            color: var(--white);
+        }
+
+        .criteria .section-title,
+        .criteria .section-subtitle {
+            color: var(--white);
+        }
+
+        .criteria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .criteria-card {
+            background: rgba(255,255,255,0.05);
+            padding: 35px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .criteria-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+
+        .criteria-card ul {
+            list-style: none;
+        }
+
+        .criteria-card li {
+            padding: 8px 0;
+            opacity: 0.9;
+        }
+
+        .criteria-card li::before {
+            content: "→ ";
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* Process */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .step {
+            text-align: center;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+
+        .step h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .step p {
+            color: var(--gray);
+        }
+
+        /* CTA Section */
+        .final-cta {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .final-cta .section-title {
+            color: var(--white);
+            font-size: 3rem;
+        }
+
+        .final-cta .section-subtitle {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.3rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: var(--white);
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .secondary-cta {
+                display: block;
+                margin: 15px auto 0;
+                width: fit-content;
+            }
+
+            .packages-grid,
+            .criteria-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <img src="logo-medium.png" alt="VelocityDev Ventures" style="max-width: 400px; width: 100%; height: auto; margin: 0 auto 20px; display: block;">
+            <div class="badge">🚀 VelocityDev Ventures</div>
+            <h1>Can't Afford a Developer?<br>Can't Find a Technical Co-Founder?</h1>
+            <p class="subtitle">Get CTO-Level Expertise + Lightning-Fast Development</p>
+            <p class="hero-description">
+                I partner with select startups on equity deals. You get 25 years of technology leadership, 
+                enterprise-grade development, and production-ready MVPs in 6-8 weeks. I get aligned with your success.
+            </p>
+            <a href="#apply" class="cta-button">Apply for Partnership</a>
+            <a href="https://velocitydev.ai" class="secondary-cta">View Standard Services</a>
+        </div>
+    </section>
+
+    <!-- Problem -->
+    <section class="problem">
+        <div class="container">
+            <h2 class="section-title">The Technical Co-Founder Problem</h2>
+            <p class="section-subtitle">Why finding technical co-founders is nearly impossible for most founders</p>
+            
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <h3>😤 Good Developers Are Employed</h3>
+                    <p>Anyone decent is already making $150K+ at a tech company. Why would they take a risk on your startup?</p>
+                </div>
+                
+                <div class="problem-card">
+                    <h3>💸 Agencies Are Too Expensive</h3>
+                    <p>$50K-150K for an MVP. You don't have that kind of capital, and investors want to see traction first.</p>
+                </div>
+                
+                <div class="problem-card">
+                    <h3>🌍 Offshore Is a Gamble</h3>
+                    <p>Cheap, but communication is hard, strategic thinking is missing, and they disappear mid-project.</p>
+                </div>
+                
+                <div class="problem-card">
+                    <h3>🎯 You Need More Than Code</h3>
+                    <p>You need someone who thinks strategically, makes architectural decisions, and understands business—not just a code monkey.</p>
+                </div>
+                
+                <div class="problem-card">
+                    <h3>⏰ Time Is Running Out</h3>
+                    <p>Your idea has a shelf life. Competitors are moving. The market is shifting. You need to launch NOW.</p>
+                </div>
+                
+                <div class="problem-card">
+                    <h3>🤝 Equity Isn't Enough</h3>
+                    <p>Most developers want equity PLUS full salary. You're willing to share ownership, but you still can't afford $150K/year.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">The VelocityDev Solution</h2>
+            <p class="section-subtitle">What you get in an equity partnership</p>
+            
+            <div class="solution-features">
+                <div class="feature">
+                    <div class="feature-icon">🎯</div>
+                    <h3>CTO-Level Thinking</h3>
+                    <p>25 years of tech leadership. 12 years as CTO. Strategic decisions, not just coding.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">⚡</div>
+                    <h3>AI-Accelerated Speed</h3>
+                    <p>6-8 week MVPs instead of 6-8 months. Fast enough to validate before you run out of runway.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">🏢</div>
+                    <h3>Enterprise Experience</h3>
+                    <p>I built systems for global organizations. Your startup gets enterprise-grade architecture.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">🤝</div>
+                    <h3>Aligned Incentives</h3>
+                    <p>I take equity. When you succeed, I succeed. I'm betting on you, not billing hours.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">📊</div>
+                    <h3>Technical Advisory</h3>
+                    <p>Not just build and disappear. Ongoing strategic guidance through your growth phase.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">💰</div>
+                    <h3>Affordable Entry</h3>
+                    <p>Reduced cash investment. We'll structure a deal that works for your current situation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages -->
+    <section class="packages">
+        <div class="container">
+            <h2 class="section-title">Partnership Packages</h2>
+            <p class="section-subtitle">Choose the model that fits your stage and needs</p>
+            
+            <div class="packages-grid">
+                <div class="package-card">
+                    <h3 class="package-title">💡 Proof-of-Concept</h3>
+                    <div class="package-pricing">
+                        <span class="cash">$1,000-1,500</span>
+                        <span class="equity">+ 5-10% equity</span>
+                        <small>OR right of first refusal</small>
+                    </div>
+                    <ul class="package-features">
+                        <li>2-3 weeks rapid prototyping</li>
+                        <li>Working prototype (demo quality)</li>
+                        <li>Technical feasibility report</li>
+                        <li>Architecture recommendations</li>
+                    </ul>
+                    <p style="color: var(--gray); font-size: 0.95rem; margin-top: 20px;">
+                        <strong>Ideal for:</strong> Very early ideas testing technical feasibility
+                    </p>
+                </div>
+
+                <div class="package-card featured">
+                    <h3 class="package-title">🚀 Startup MVP</h3>
+                    <div class="package-pricing">
+                        <span class="cash">$2,500-3,500</span>
+                        <span class="equity">+ 15-20% equity</span>
+                        <small>Vesting over 12 months</small>
+                    </div>
+                    <ul class="package-features">
+                        <li>6-8 weeks full development</li>
+                        <li>Complete MVP with core features</li>
+                        <li>Production deployment</li>
+                        <li>3 months post-launch support</li>
+                        <li>Technical advisory (5 hrs/month)</li>
+                    </ul>
+                    <p style="color: var(--gray); font-size: 0.95rem; margin-top: 20px;">
+                        <strong>Ideal for:</strong> Solo founders with validated ideas ready to launch
+                    </p>
+                </div>
+
+                <div class="package-card">
+                    <h3 class="package-title">🎯 Technical Co-Founder Lite</h3>
+                    <div class="package-pricing">
+                        <span class="cash">$5,000</span>
+                        <span class="equity">+ 20-25% equity</span>
+                        <small>Vesting over 12-24 months</small>
+                    </div>
+                    <ul class="package-features">
+                        <li>8-12 weeks full development</li>
+                        <li>Complete product (beyond MVP)</li>
+                        <li>Production deployment</li>
+                        <li>6 months post-launch support</li>
+                        <li>Technical advisory (10 hrs/month)</li>
+                        <li>Help with investor tech due diligence</li>
+                    </ul>
+                    <p style="color: var(--gray); font-size: 0.95rem; margin-top: 20px;">
+                        <strong>Ideal for:</strong> Startups planning to raise seed funding
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Selection Criteria -->
+    <section class="criteria">
+        <div class="container">
+            <h2 class="section-title">Who I Partner With</h2>
+            <p class="section-subtitle">I'm selective. Only 3-4 equity partnerships per year. Here's what I look for.</p>
+            
+            <div class="criteria-grid">
+                <div class="criteria-card">
+                    <h3>The Founder</h3>
+                    <ul>
+                        <li>Domain expertise in the industry</li>
+                        <li>Demonstrable work ethic</li>
+                        <li>Complementary skills (sales, marketing)</li>
+                        <li>Full-time commitment (or going full-time)</li>
+                        <li>Has skin in the game</li>
+                        <li>Clear communicator</li>
+                    </ul>
+                </div>
+                
+                <div class="criteria-card">
+                    <h3>The Idea</h3>
+                    <ul>
+                        <li>Solves a real, validated problem</li>
+                        <li>Has customer interest or LOIs</li>
+                        <li>Clear path to revenue</li>
+                        <li>Feasible for AI-accelerated dev</li>
+                        <li>Market I can understand</li>
+                        <li>Not overly regulated industry</li>
+                    </ul>
+                </div>
+                
+                <div class="criteria-card">
+                    <h3>The Business Model</h3>
+                    <ul>
+                        <li>SaaS with recurring revenue</li>
+                        <li>B2B with clear acquisition path</li>
+                        <li>Marketplace with network effects</li>
+                        <li>Platform with scale potential</li>
+                        <li>NOT low-margin commodity plays</li>
+                        <li>Realistic exit potential</li>
+                    </ul>
+                </div>
+                
+                <div class="criteria-card">
+                    <h3>The Deal</h3>
+                    <ul>
+                        <li>Meaningful equity stake (10-25%)</li>
+                        <li>Clear vesting terms</li>
+                        <li>Clean cap table</li>
+                        <li>Founder retains majority</li>
+                        <li>Reasonable scope</li>
+                        <li>Mutual respect and trust</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <p style="text-align: center; margin-top: 50px; font-size: 1.1rem; opacity: 0.9;">
+                If you meet these criteria, we should talk. If not, I'll respectfully pass and may point you to better alternatives.
+            </p>
+        </div>
+    </section>
+
+    <!-- Process -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">The Partnership Process</h2>
+            <p class="section-subtitle">From application to launch in 8-12 weeks</p>
+            
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Application</h3>
+                    <p>Submit detailed application about your idea, validation, and background</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Video Call</h3>
+                    <p>30-60 min conversation. Chemistry check and idea validation.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Due Diligence</h3>
+                    <p>Both ways. I validate your market, you validate my fit.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Term Sheet</h3>
+                    <p>Simple, founder-friendly agreement on scope, timeline, and equity.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h3>Build</h3>
+                    <p>6-8 weeks of focused development with weekly check-ins.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <h3>Launch</h3>
+                    <p>Production deployment + 3-6 months of support and advisory.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta" id="apply">
+        <div class="container">
+            <h2 class="section-title">Ready to Build?</h2>
+            <p class="section-subtitle">
+                I review applications weekly. If you're a fit, we'll schedule a call within 5 business days.
+            </p>
+            
+            <p style="margin: 40px 0; font-size: 1.1rem; opacity: 0.9;">
+                Send your application to: <strong>ventures@velocitydev.ai</strong>
+            </p>
+            
+            <div style="background: rgba(255,255,255,0.1); padding: 40px; border-radius: 12px; max-width: 700px; margin: 0 auto; text-align: left;">
+                <h3 style="margin-bottom: 20px; font-size: 1.3rem;">Include in your application:</h3>
+                <ul style="list-style: none; font-size: 1.05rem; line-height: 2;">
+                    <li>✓ Your name and background (2-3 sentences)</li>
+                    <li>✓ The problem you're solving</li>
+                    <li>✓ Your solution (what you're building)</li>
+                    <li>✓ Validation you have so far (customers, LOIs, revenue)</li>
+                    <li>✓ Why you can't find a technical co-founder</li>
+                    <li>✓ Timeline and funding situation</li>
+                    <li>✓ What package interests you</li>
+                    <li>✓ LinkedIn profile (so I can see your background)</li>
+                </ul>
+            </div>
+            
+            <p style="margin-top: 40px; font-size: 0.95rem; opacity: 0.8;">
+                Currently accepting applications for Q1 2025 partnerships (3 spots available)
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p><strong>VelocityDev Ventures</strong> | Equity partnerships for ambitious founders</p>
+        <p style="margin-top: 10px;"><a href="https://velocitydev.ai">VelocityDev Main Services</a> | <a href="mailto:ventures@velocitydev.ai">ventures@velocitydev.ai</a></p>
+        <p style="margin-top: 10px; opacity: 0.7;">© 2024 VelocityDev.ai. All rights reserved.</p>
+    </footer>
+</body>
+</html>
