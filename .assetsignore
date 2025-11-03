@@ -1,0 +1,2 @@
+# This file tells Wrangler which files to ignore when uploading assets
+# We intentionally want _worker.js to be uploaded
